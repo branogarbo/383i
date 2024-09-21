@@ -1,3 +1,3 @@
 #!/bin/bash
 
-egrep ',IFT383$' lab_c_02.csv | cut -d ',' -f1
+cat lab_c_02.csv | egrep ',IFT383$' | cut -d ',' -f1
