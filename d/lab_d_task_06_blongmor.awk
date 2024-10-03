@@ -3,7 +3,7 @@
 # the pug hate is justified
 
 BEGIN {
-    FS = ","
+    FS = ", "
 }
 NR != 1 {
     if ($2 < voteMin) {

@@ -1,37 +1,37 @@
 #!/usr/bin/awk -f
 
 BEGIN {
-    FS = ","
+    FS = ", "
 }
 NR != 1 {
     totalVotes += $2
-    breedVotes[$1] = $2
+    breedVotes[$2] = $1
 }
 END {
-    avgVotes = totalVotes / NR
+    avgVotes = totalVotes / (NR - 1)
     
     printf "Total votes: %d\n", totalVotes
     printf "Average votes: %.2f\n", avgVotes
 
-    for (breed in breedVotes) {
-        if (breedVotes[breed] >= avgVotes) {
-            topBreeds[breed] = breedVotes[breed]
+    for (count in breedVotes) {
+        if (count >= avgVotes) {
+            topBreeds[count] = breedVotes[count]
         } else {
-            bottomBreeds[breed] = breedVotes[breed]
+            bottomBreeds[count] = breedVotes[count]
         }
     }
 
-    print "Most popular:"
+    print "\nMost popular:"
 
-    topLen = asort(topBreeds)
+    topLen = asorti(topBreeds)
     for (i = topLen; i >= 1; i--) {
-        print topBreeds[i]
+        print breedVotes[topBreeds[i]]
     }
 
-    print "Least popular:"
+    print "\nLeast popular:"
 
-    bottomLen = asort(bottomBreeds)
+    bottomLen = asorti(bottomBreeds)
     for (i = 1; i <= bottomLen; i++) {
-        print bottomBreeds[i]
+        print breedVotes[bottomBreeds[i]]
     }
 }
