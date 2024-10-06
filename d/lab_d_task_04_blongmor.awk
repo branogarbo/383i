@@ -3,7 +3,7 @@
 BEGIN {
     FS = ","
 }
-{
+NR != 1 {
     gradeCounts[$2] += 1
 }
 END {
